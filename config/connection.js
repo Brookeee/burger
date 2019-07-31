@@ -11,7 +11,7 @@ connected = mysql.createConnection(process.env.JAWSDB_URL);
         port: 3306,
         host: "localhost",
         user: "user",
-        password: "Disney=100%",
+        password: "",
         database: "burgers_db"
     })
 };
