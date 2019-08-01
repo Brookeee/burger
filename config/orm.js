@@ -1,11 +1,11 @@
 var connected = require("../config/connection.js");
 
 var orm = {
-  selectAll: function(name, table) {
-    var queryStr = "SELECT * FROM " + table;
-    connected.query(queryStr, function(error, data) {
+  selectAll: function(table, cb) {
+    var queryStr = "SELECT * FROM " + table + ";";
+    connected.query(queryStr, function(error, res) {
       if (error) throw error;
-      name(data);
+      cb(res);
     });
   },
   insertOne: function(table, col, newInput, callback){
