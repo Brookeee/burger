@@ -1,11 +1,12 @@
 // Dependencies
 var express = require("express");
 // PORT 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 var app = express();
 
 // Static content for app
 app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 //Body parsing
 app.use(express.urlencoded({ extended: true}));

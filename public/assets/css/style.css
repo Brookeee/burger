@@ -1,8 +1,17 @@
-/* styling incomplete.. Will add later //
-
-/* body {
-    background: blue;
+body {
+    background-image: url("http://www.sclance.com/backgrounds/burger-background/burger-background_461862.jpg");
 }
-title {
-    background-image: url("/public/assets/images/cartoon\ burger.jpg");
-} */
+ #title {
+    text-align: center !important;
+    color: white;
+    font-size: 40px;
+}
+#make {
+    text-align: center !important;
+    color: white;
+    font-size: 18px;
+}
+#burgernew {
+    text-align: center !important;
+    color: white;
+}

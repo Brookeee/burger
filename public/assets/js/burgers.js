@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready(function() {
     //Adding Burger click logic
   $("#addin").on("submit", function(event) {
     event.preventDefault();

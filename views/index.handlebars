@@ -1,47 +1,74 @@
 <div class="container">
+  <h1 id="title">Eat Tha Burgers!</h1>
 
-  <div class="jumbotron">
-    <h1 id="title">Eat Tha Burgers!</h1>
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-      crossorigin="anonymous"></script>
-  </div>
 
-  <h2 id="make">Make a new burger</h2>
-  <panel>
-    <form class="create-form">
-      <div class="form-group">
-        <label for="newB" id="burgernew">Add a new burger:</label>
-        <input type="text" id="newburger" name="burg">
-        <button type="submit" class="btn" id="addin"><span class="fa fa-thumbs-up"></span></button>
-      </div>
-    </form>
-  </panel>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+</div>
+
+<h2 id="make">Make a new burger</h2>
+<panel>
+  <form class="create-form">
+    <div class="form-group">
+      <label for="newB" id="burgernew">Add a new burger:</label>
+
+      <input type="text" id="newburger" name="burg">
+      <button class="btn btn-primary" type="submit">Place order</button>
+    </div>
+  </form>
+</panel>
 </div>
 
 <div id="row">
   <div class="col-sm-6">
     <div class="panel panel-default">
       <div class="panel-heading" id="left"><strong>Burgers!</strong></div>
-      <div class="panel-body">
-        <ul>
-        </ul>
-      </div>
-    </div>
-  </div>
+      <ul class="list-group">
+        {{#each burgers}}
+        {{#unless this.devoured}}
+        <li class="list-group-item">
+          <div class="input-group">
+            <p class="lead">{{this.burger_name}}</p>
+            <span class="input-group-btn">
 
-  <div class="col-sm-6">
-    <div class="panel panel-default">
-      <div class="panel-heading" id="right"><strong>Devoured Burgers</strong></div>
-      <div class="panel-body">
-        <ul>
-        </ul>
-      </div>
+              <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="true">
+                <button class="btn btn-default btn-lg" type="submit">Devour it!</button>
+              </form>
+              <ul class="list-group">
+                {{#each burgers}}
+                {{#if this.devoured}}
+                <li class="list-group-item">
+                  <p class="lead">{{this.burger_name}}</p>
+                </li>
+                {{/if}}
+                {{/each}}
+              </ul>
+            </span>
+          </div>
+        </li>
+        {{/unless}}
+        {{/each}}
+      </ul>
+
     </div>
   </div>
+</div>
+</div>
+</div>
+
+<div class="col-sm-6">
+  <div class="panel panel-default">
+    <div class="panel-heading" id="right"><strong>Devoured Burgers</strong></div>
+    <div class="panel-body">
+      <ul>
+      </ul>
+    </div>
+  </div>
+</div>
 </div>
 
 </div>
