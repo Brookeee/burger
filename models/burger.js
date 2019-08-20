@@ -4,24 +4,21 @@ var orm = require("../config/orm.js");
 var burger = {
   // Selecting all burgers logic
   selectAll: function(cb) {
-    orm.selectAll("burger", function(res) {
+    orm.selectAll("burgers", function(res) {
       cb(res);
     });
   },
   // inserting a new burger logic
-  insertOne: function(col, val, cb) {
-    orm.insertOne("burger", col, val, function(res) {
+  insertOne: function(objColVal, condition, cb) {
+    orm.insertOne("burgers", objColVal, condition, function(res) {
       cb(res);
     });
   },
   // updating burger logic
-  updateOne: function(burgObj, value, cb) {
-    orm.updateOne("burger", burgObj, value, function(res) {
+  updateOne: function(cols, value, cb) {
+    orm.updateOne("burgers", cols, value, function(res) {
       cb(res);
     });
   }
 };
-
-// Removing burger db logic..,
-
 module.exports = burger;

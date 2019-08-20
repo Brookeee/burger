@@ -11,13 +11,14 @@
 
 <h2 id="make">Make a new burger</h2>
 <panel>
-  <form class="create-form">
-    <div class="form-group">
+  {{!-- <form class="create-form"> --}}
+  <div class="form-group">
+    <form id="newBurg" class="button-size">
       <label for="newB" id="burgernew">Add a new burger:</label>
 
       <input type="text" id="newburger" name="burg">
       <button class="btn btn-primary" type="submit">Place order</button>
-    </div>
+  </div>
   </form>
 </panel>
 </div>
@@ -34,9 +35,9 @@
             <p class="lead">{{this.burger_name}}</p>
             <span class="input-group-btn">
 
-              <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+              <form action="burgers/update/{{this.id}}method=PUT" method="POST">
                 <input type="hidden" name="devoured" value="true">
-                <button class="btn btn-default btn-lg" type="submit">Devour it!</button>
+                <button data-id="{{this.id}}" class="devour" class="btn btn-default btn-lg">Devour!</button>
               </form>
               <ul class="list-group">
                 {{#each burgers}}
@@ -59,6 +60,16 @@
 </div>
 </div>
 </div>
+<script type="text/javascript">
+  $("#newBurg").on("submit", function(event) {
+    event.preventDefault();
+
+    var newBurg = {
+      burger: $("#newBurg [name=burger]").val().trim();
+    };
+  })
+
+</script>
 
 <div class="col-sm-6">
   <div class="panel panel-default">

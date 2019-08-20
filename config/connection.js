@@ -2,24 +2,41 @@ require("dotenv").config();
 var keys = require("./key.js");
 
 // Dependencies
-var mysql = require("mysql"); 
+var mysql = require("mysql");
+var express = require("express");
+
+var app = express();
 
 var PORT = process.env.PORT || 8080;
-// Heroku connection 
-var connection = mysql.createConnection({
+
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(proces.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
     host: "localhost",
-    port: 3306,
-    user: "root", 
+    user: "root",
     password: keys.password,
     database: "burgers_db"
-});
+  });
+}
+
+// var connection = mysql.createConnection({
+//   host: "localhost",
+//   port: 3306,
+//   user: "root",
+//   password: keys.password,
+//   database: "burgers_db"
+// });
 
 // mySQL connection
-connection.connect(function(error){
-   if (error) throw error;
-   console.log("connected as id " +connection.threadId);
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting " + err.stack);
+    return;
+  }
+  console.log("connected as id " + connection.threadId);
 });
-PORT;
+PORT; 
+
 // Export connection
 module.exports = connection;
-

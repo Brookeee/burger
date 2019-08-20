@@ -1,25 +1,26 @@
 {
-    "name": "burger",
-    "version": "1.0.0",
-    "description": "Make a burger application",
-    "main": "server.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/Brookeee/burger.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/Brookee/burger/issues"
-    },
-    "homepage": "https://github.com/Brookeee/burger#readme",
-    "dependencies": {
-      "express": "^4.17.1",
-      "express-handlebars": "^3.1.0",
-      "mysql": "^2.17.1"
-    }
+  "name": "burger",
+  "version": "1.0.0",
+  "description": "Make a burger application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brookeee/burger.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Brookee/burger/issues"
+  },
+  "homepage": "https://github.com/Brookeee/burger#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "mysql": "^2.17.1"
   }
+}
