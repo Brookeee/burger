@@ -15,6 +15,7 @@ router.get("/", function(req, res) {
     var hbsobject = {
       burger: data
     };
+    //hamburger object
     console.log(hbsobject);
     res.render("index", hbsobject);
   });
@@ -27,14 +28,14 @@ router.post("/api/burgers", function(req, res) {
     [req.body.burger_name, false],
     function(result) {
       res.redirect("/");
-      // res.json({ id: result.insertId });
+      res.render(result);
     }
   );
 });
 
 // Put route to update burgers when eaten or recreated
 router.put("/api/burgers/:id", function(req, res) {
-  var condition = req.params.id;
+  var condition = "id = " + req.params.id;
   console.log("condition", condition);
   // console.log(req.body);
 
