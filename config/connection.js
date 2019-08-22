@@ -9,7 +9,7 @@ var app = express();
 
 var PORT = process.env.PORT || 8080;
 
-// not successful connected 
+// not successful connected er
 // if (process.env.JAWSDB_URL) {
 //   connection = mysql.createConnection(proces.env.JAWSDB_URL);
 // } else {
