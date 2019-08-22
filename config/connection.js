@@ -7,7 +7,7 @@ var express = require("express");
 
 var app = express();
 
-var PORT = process.env.PORT || 8080;
+// var PORT = process.env.PORT || 8080;
 
 // if (process.env.JAWSDB_URL) {
 //   connection = mysql.createConnection(process.env.JAWSDB_URL);
@@ -37,7 +37,7 @@ connection.connect(function(err) {
   }
   console.log("connected as id " + connection.threadId);
 });
-PORT;
+// PORT;
 
 // Export connection
 module.exports = connection;
