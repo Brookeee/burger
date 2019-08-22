@@ -6,7 +6,7 @@ var app = express();
 
 // Static content for app
 app.use(express.static("public"));
-// app.use(express.static(__dirname + '/public'));d 
+// app.use(express.static(__dirname + '/public'));
 
 //Body parsing
 app.use(express.urlencoded({ extended: true}));
