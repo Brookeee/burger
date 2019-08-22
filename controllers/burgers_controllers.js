@@ -1,4 +1,5 @@
 // Dependencies
+
 var express = require("express");
 var burger = require("../models/burger.js");
 
@@ -10,51 +11,40 @@ var router = express.Router();
 // });
 
 router.get("/", function(req, res) {
-  burger.selectAll(function(data) {
-    var object = {
+  burger.all(function(data) {
+    var hbsobject = {
       burger: data
     };
-    console.log(object);
-    res.render("index", object);
+    console.log(hbsobject);
+    res.render("index", hbsobject);
   });
 });
 
-// Put route to update burgers when eaten or recreated
-router.put("/api/burger/:id", function(req, res) {
-  var terms = req.params.id;
-  console.log(terms);
-  console.log(req.bod);
+// Add new burger logic
+router.post("/api/burgers", function(req, res) {
+  burger.create(
+    ["burger_name", "devoured"],
+    [req.body.burger_name, false],
+    function(result) {
+      res.redirect("/");
+      // res.json({ id: result.insertId });
+    }
+  );
+});
 
-  burger.updateOne(req.body.devoured, condition, function(result) {
-    console.log(result);
+// Put route to update burgers when eaten or recreated
+router.put("/api/burgers/:id", function(req, res) {
+  var condition = req.params.id;
+  console.log("condition", condition);
+  // console.log(req.body);
+
+  burger.update({ devoured: true }, condition, function(result) {
     if (result.changedRows === 0) {
-      return res.status(200).end();
+      return res.status(404).end();
     } else {
       res.status(200).end();
     }
   });
 });
-
-// Add new burger logic
-router.post("/api/burger", function(req, res) {
-  burger.insertOne(
-    ["burger_name", "devoured"],
-    [req.body.name, req.body.devoured],
-    function(result) {
-      res.json({ id: result.insertId });
-    }
-  );
-});
-
-// "burger_name"], [req.body.burger_name], function(info) {
-//     res.redirect("/burger");
-//     res.json(info);
-//   });
-// });
-// } devoured: req.body.devoured }, terms, function(data) {
-//   res.redirect("/burger");
-//   res.json(data);
-// });
-
 // Export
 module.exports = router;

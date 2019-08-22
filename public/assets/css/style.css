@@ -6,12 +6,25 @@ body {
     color: white;
     font-size: 40px;
 }
-#make {
-    text-align: center !important;
+.add {
     color: white;
-    font-size: 18px;
+    font-size: 24px;
 }
 #burgernew {
     text-align: center !important;
     color: white;
+}
+.burger-menu {
+    color: white;
+}
+.devour {
+    color: red;
+}
+.bu {
+    color: white;
+    font-size: 14px;
+}
+.text, .burgereat, .eaten {
+    color: white;
+    font-size: 20px;
 }

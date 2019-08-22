@@ -1,85 +1,66 @@
 <div class="container">
   <h1 id="title">Eat Tha Burgers!</h1>
-
-
-  <script src="https://code.jquery.com/jquery.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
 </div>
-
-<h2 id="make">Make a new burger</h2>
-<panel>
-  {{!-- <form class="create-form"> --}}
-  <div class="form-group">
-    <form id="newBurg" class="button-size">
-      <label for="newB" id="burgernew">Add a new burger:</label>
-
-      <input type="text" id="newburger" name="burg">
-      <button class="btn btn-primary" type="submit">Place order</button>
+<div class="container">
+  <div class="col-sm-6 text-center">
+    <h4 class="text">Which burger would you like to try?</h4>
+    <form class="button-size" action="/api/burgers" method="POST">
+      <input type="text" class="text-center" id="insertBurger" name="burger_name"
+        placeholder="Insert new burger"></input>
+      <span class="input-group-btn">
+        <button type="submit" class="insertBurgerBtn btn btn-primary">Submit</button>
+      </span>
+    </form>
   </div>
-  </form>
-</panel>
-</div>
-
-<div id="row">
-  <div class="col-sm-6">
-    <div class="panel panel-default">
-      <div class="panel-heading" id="left"><strong>Burgers!</strong></div>
-      <ul class="list-group">
-        {{#each burgers}}
-        {{#unless this.devoured}}
-        <li class="list-group-item">
-          <div class="input-group">
-            <p class="lead">{{this.burger_name}}</p>
-            <span class="input-group-btn">
-
-              <form action="burgers/update/{{this.id}}method=PUT" method="POST">
-                <input type="hidden" name="devoured" value="true">
-                <button data-id="{{this.id}}" class="devour" class="btn btn-default btn-lg">Devour!</button>
-              </form>
-              <ul class="list-group">
-                {{#each burgers}}
-                {{#if this.devoured}}
-                <li class="list-group-item">
-                  <p class="lead">{{this.burger_name}}</p>
-                </li>
-                {{/if}}
-                {{/each}}
-              </ul>
-            </span>
-          </div>
-        </li>
-        {{/unless}}
-        {{/each}}
-      </ul>
-
+  <div class="row">
+    <div class="col-sm-6">
+      <h4 class="text-center burgereat">Burgers to Eat:</h4>
+      {{#each burger}} {{#unless this.devoured}}
+      <form>
+        <div class="input-group">
+          <input type="hidden" name="devoured" value="true">
+          <li class="form-control uneaten">{{this.burger_name}}</li>
+          <span class="input-group-btn">
+            <button class="eatBurg btn btn-info" data-id="{{id}}" type="submit">Devour It!</button>
+          </span>
+        </div>
+      </form>
+      {{/unless}} {{/each}}
+    </div>
+    <div class="col-sm-6">
+      <h4 class="text-center eaten">Eaten Burgers:</h4>
+      {{#each burger}} {{#if this.devoured}}
+      <div>
+        <li class="form-control devoured">{{this.burger_name}}</li>
+      </div>
+      </form>
+      {{/if}} {{/each}}
     </div>
   </div>
+  <br>
 </div>
-</div>
-</div>
-<script type="text/javascript">
-  $("#newBurg").on("submit", function(event) {
-    event.preventDefault();
+<script>
 
-    var newBurg = {
-      burger: $("#newBurg [name=burger]").val().trim();
-    };
+  $(".eatBurger").click(function (event) {
+    event.preventDefault()
+    let id = $(this).attr("data-id")
+    console.log(id)
+    $.ajax({
+      url: '/api/burgers/' + id,
+      type: 'PUT',
+    }).then(function (info) {
+      location.reload()
+    })
   })
-
 </script>
 
-<div class="col-sm-6">
-  <div class="panel panel-default">
-    <div class="panel-heading" id="right"><strong>Devoured Burgers</strong></div>
-    <div class="panel-body">
-      <ul>
-      </ul>
-    </div>
-  </div>
-</div>
-</div>
+{{!-- <form class="addAburger">
+  <div class="form-group">
+    <label for="addNew">
+      <h3>Enter the next burger you want to make. </h3>
+    </label>
+    <input type="text" class="form-control add-new" id="addNewBurger" placeholder="Enter a burger here">
+    <br>
+    <button type="submit" class="btn btn-primary post"><i class="fas fa-plus-square"></i> Submit</button>
 
-</div>
+</form> --}}
