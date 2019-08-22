@@ -28,7 +28,7 @@ router.post("/api/burgers", function(req, res) {
     [req.body.burger_name, false],
     function(result) {
       res.redirect("/");
-      res.render(result);
+      // res.render(result);
     }
   );
 });
