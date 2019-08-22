@@ -10,7 +10,7 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 if (process.env.JAWSDB_URL) {
-  connection = mysql.createConnection(proces.env.JAWSDB_URL);
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
   connection = mysql.createConnection({
     host: "localhost",
